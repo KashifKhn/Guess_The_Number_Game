@@ -311,7 +311,6 @@ void middleLevel()
         do
         {
             scanf("%d", &guessNumber);
-            guessCount++;
 
             if (totalChance == 1)
             {
@@ -356,7 +355,7 @@ void middleLevel()
                 losingScreen();
                 break;
             }
-
+            guessCount++;
             totalChance--;
         } while (1);
         sleep(5);
@@ -406,7 +405,7 @@ void hardLevel()
         srand(time(0));
         randomNumber = rand() % 500 + 1;
         // printf("Random Number is %d\n", randomNumber);
-        int upperLimit = 100, lowerLimit = 1;
+        int upperLimit = 500, lowerLimit = 1;
         printf("\nGuess the number between %d to %d\n\n", lowerLimit, upperLimit);
         do
         {
