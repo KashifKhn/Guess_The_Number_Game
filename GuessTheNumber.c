@@ -3,6 +3,7 @@
 #include <time.h>
 #include <conio.h>
 #include <unistd.h>
+#include <ctype.h>
 
 void welcomScreen();
 void mainMenu();
@@ -14,6 +15,7 @@ void middleLevelWelcomeScreen();
 void middleLevel();
 void hardLevelWelcomeScreen();
 void hardLevel();
+int userGuessNumber();
 void playAgain();
 void winGameScreen(int guessCount);
 void losingScreen();
@@ -102,6 +104,13 @@ void mainMenu()
     mainMenu();
 }
 
+int userGuessNumber()
+{
+    int guessNumber;
+    scanf("%d", &guessNumber);
+    return guessNumber;
+}
+
 void beginnerLevelWelcomScreen()
 {
     clearScreen();
@@ -144,7 +153,7 @@ void beginnerLevel()
         printf("\nGuess the number between %d to %d\n\n", lowerLimit, upperLimit);
         do
         {
-            scanf("%d", &guessNumber);
+            guessNumber = userGuessNumber();
             guessCount++;
             if (guessNumber == randomNumber)
             {
@@ -226,7 +235,7 @@ void easyLevel()
         printf("\nGuess the number between %d to %d\n\n", lowerLimit, upperLimit);
         do
         {
-            scanf("%d", &guessNumber);
+            guessNumber = userGuessNumber();
             guessCount++;
             if (guessNumber == randomNumber)
             {
@@ -299,9 +308,9 @@ void middleLevelWelcomeScreen()
 void middleLevel()
 {
     char option;
-    int totalChance = 7;
     do
     {
+        int totalChance = 7;
         int randomNumber, guessNumber, guessCount = 0;
         srand(time(0));
         randomNumber = rand() % 100 + 1;
@@ -310,7 +319,7 @@ void middleLevel()
         printf("\nGuess the number between %d to %d\n\n", lowerLimit, upperLimit);
         do
         {
-            scanf("%d", &guessNumber);
+            guessNumber = userGuessNumber();
 
             if (totalChance == 1)
             {
@@ -392,15 +401,15 @@ void hardLevelWelcomeScreen()
     if (option == 0)
         mainMenu();
     else
-        middleLevel();
+        hardLevel();
 }
 
 void hardLevel()
 {
     char option;
-    int totalChance = 9;
     do
     {
+        int totalChance = 9;
         int randomNumber, guessNumber, guessCount = 0;
         srand(time(0));
         randomNumber = rand() % 500 + 1;
@@ -409,9 +418,8 @@ void hardLevel()
         printf("\nGuess the number between %d to %d\n\n", lowerLimit, upperLimit);
         do
         {
-            scanf("%d", &guessNumber);
+            guessNumber = userGuessNumber();
             guessCount++;
-
             if (totalChance == 1)
             {
                 printf("\n\n?????You have only one chance left???????\n\n");
