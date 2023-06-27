@@ -3,7 +3,6 @@
 #include <time.h>
 #include <conio.h>
 #include <unistd.h>
-#include <ctype.h>
 
 void welcomScreen();
 void mainMenu();
@@ -106,9 +105,18 @@ void mainMenu()
 
 int userGuessNumber()
 {
-    int guessNumber;
-    scanf("%d", &guessNumber);
-    return guessNumber;
+    char guessNumber [10];
+    scanf("%[^\n]", &guessNumber);
+    
+    for(int i=0; guessNumber [i] != '0'; i++)
+    {
+        if(guessNumber[i] < '0' && guessNumber[i] > '9')
+        {
+            printf("Invalid Input");
+            break;
+        }
+    }
+    return (int)guessNumber;
 }
 
 void beginnerLevelWelcomScreen()
